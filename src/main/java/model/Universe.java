@@ -27,7 +27,7 @@ public class Universe {
 		Character elf = new Character();
 		elf.setName("Zelda");
 		elf.setHpMax(120);
-		elf.setAttack(50);
+		elf.setAttack(45);
 		elf.setDodgeProbability(0.25);
 		characters.add(elf);
 		
