@@ -1,0 +1,183 @@
+/*test*/
+
+@font-face {
+	font-family: "Zelda";
+	src: url("font/Triforce.ttf");
+}
+
+@font-face {
+	font-family: "Stat";
+	src: url("font/glimmer.ttf");
+}
+
+body {
+	background-image : url("/image/Eldin.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: Stat;
+}
+
+.fin{
+	background-image : url("/image/Fin.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: Zelda;
+}
+
+.gameOver{
+
+	background-image : url("/image/gameover.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: Zelda;
+}
+
+h1 {
+	color: white;
+	text-align: center;
+	font-family: "Zelda";
+	text-shadow: 0px 2px 3px #555;
+}
+
+.big-font {
+	font-size: 72px;
+}
+
+h2 {
+	color: #2A3645;
+	text-align: center;
+	text-shadow: #DEE4EA 1px 0 10px;
+	font-family: "Stat";
+}
+
+p {
+	color : white;
+	font-size: 18px;
+}
+
+.bold{
+	font-weight: bold;
+}
+
+.center	{
+	text-align: center;
+}
+
+.middle	{
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.lstCharacter {
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	
+}
+
+.character {
+	
+	padding: 20px;
+	
+}
+
+.leButton {
+	box-shadow: 0px 1px 0px 0px #1c1b18;
+	background:linear-gradient(to bottom, #2C4767 5%, #202E3E 100%);
+	background-color:#2C4767;
+	border-radius:25%;
+	border:2px solid #333029;
+	display:inline-block;
+	cursor:pointer;
+	color:#E6EDF5;
+	font-family:Zelda;
+	font-size:30px;
+	padding:12px 16px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.hp-hero{
+	font-weight: bold;
+	color:#74C016;
+	font-family:Stat;
+	font-size:27px;
+	text-shadow:0px 1px 0px #060606;
+}
+.hp-monster{
+	font-weight: bold;
+	color:#74C016;
+	font-family:Stat;
+	font-size:30px;
+	text-shadow:0px 1px 0px #060606;
+}
+.bigButton {
+	font-size:50px;
+}
+
+.choice:hover {
+	background:linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);
+	background-color:#ccc2a6;
+}
+
+.left {
+	float: left;
+	padding-left: 200px;
+}
+
+.right {
+	float:right;
+	padding-right: 200px;
+}
+
+.avatar {
+	padding: 12px 0px;
+    border-radius: 25px;
+}
+
+.name {
+	color: white;
+	text-shadow: 0px 2px 3px #555;
+	font-size: 32px;
+	font-family: "Zelda";
+}
+
+.fade-in-monstre {
+	animation: fadeIn ease 1s;
+	-webkit-animation: fadeIn ease 1s;
+	-moz-animation: fadeIn ease 1s;
+	-o-animation: fadeIn ease 1s;
+	-ms-animation: fadeIn ease 1s;
+}
+
+.fade {
+	border-radius: 80px;
+	box-shadow: 0 0 15px 10px #141414;
+}
+
+@keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='UTF-8'>
+		<title>Breath of The Wild</title>
+		<link href="/image/favicon.ico" rel="icon" type="image/x-icon" />
+		<link rel="stylesheet" href="css/style.css">
+		
+	</head>
+	<body>
+		<h1>Selectionnez votre personnage</h1>
+		<div class="lstCharacter center">
+		</div>
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	
+
+<!-- Le Js ici permet de fournint les informations sur tout les personnage disponible et ensuite renvoyer l'info 
+sur le personnage selectionner pour les conserver pour le combat -->
+<script>
+$(document).ready(function() {	
+	$.ajax({
+		type : "POST",
+		url : "./listCharacters",
+		success : function(data) {
+			var lstCharacters = JSON.parse(data);
+			lstCharacters.forEach(function(character){
+				$(".lstCharacter").append("<form method='post' action='charSelected'>"+
+				"<div class='character fade-in'>"+
+				"<input type='hidden' name='name' value='"+character.name+"'>"+
+				"<p class='name fade-in-Monster'>"+character.name+"</p>"+
+				"<img src='/image/avatar/"+character.name+".png' class='avatar' alt="+character.name+">"+
+				"<p><img src='/image/icons/HP.png'> HP: "+character.pv+
+				"  <img src='/image/icons/Attack.png'> Attack: "+character.attack+
+				"  <img src='/image/icons/Dodge.png'> Dodge: "+character.esquive*100+"% </p>"+
+				"<input type='submit' class='leButton' value=' "+character.name+"'><br></div>"+
+				"</form>");
+			});
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+		},
+	});
+});
+</script>
+</html>

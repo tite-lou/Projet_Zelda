@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Breath of The Wild</title>
+		<link href="/image/favicon.ico" rel="icon" type="image/x-icon" />
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body class ="fin">
+		<div class="center">
+			<h1 class="big-font">Merci Héros!</h1><br>
+			
+			
+			<div class="win"></div>
+			<div class="nb_kills_win"></div>
+			<div class="choiceCharacter center">
+				<a href="restart"><input type="button" class="leButton" value="Rejouer!"></a>
+			</div>
+		</div>
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	<!-- Le Js ici fournit dynamiquement les information sur la victoire lié au combat -->
+	<script>
+	
+	$(document).ready(function() {	
+		$.ajax({
+			type : "POST",
+			url : "./endStat",
+			success : function(data) {
+				var infos = JSON.parse(data)[0];
+				console.log(infos);
+				$(".nb_kills").append("<h2 class='big-font' style='color:#405D80'> "+infos.foeNumber+" ennemis vaincus</h2>");
+				$(".nb_kills_win").append("<h2 class='big-font'>"+infos.foeNumber+" ennemis vaincus! Bravo "+infos.h_name+"!</h2>");
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+		});
+	});
+	
+	</script>
+	
+</html>

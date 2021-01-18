@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='UTF-8'>
+		<title>Breath of The Wild</title>
+		<link href="/image/favicon.ico" rel="icon" type="image/x-icon" />
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+		
+		<script src="js/cookies.js"></script>
+	</head>
+	<body>
+		<div class="characterCombat left center">
+		</div>
+		<div class="monsterCombat right center">
+		</div>
+		<input id="fight" type="button" class="leButton middle bigButton" value="Fight !">
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	<!-- Le Js ici recupére les information sur le personnage selectionner et reactuliser sa vie tout comme celle du monstre qui 
+	permettra de savoir si l'on actualise le monstre en passant au suivant si le precedant de la liste à ces HP à 0 -->
+	<script type="text/javascript">
+	$(document).ready(function() {	
+		$.ajax({
+			type : "POST",
+			url : "./getCharacter",
+			success : function(data) {
+				var character = JSON.parse(data)[0];
+				console.log(character);
+				$(".characterCombat").append("<div class='character fade-in'>"+
+				"<input type='hidden' name='name' value='"+character.h_name+"'>"+
+				"<p class='name'>"+character.h_name+"</p>"+
+				"<div class='hp-hero fade-in-Monster'>"+character.ch_hp_max+"</div>"+
+				"<img src='/image/avatar/"+character.h_name+".png' class='avatar' alt="+character.h_name+">"+
+				"<p><img src='/image/icons/HP.png'>HP: "+character.ch_hp_max+
+				"  <img src='/image/icons/Attack.png' > Attack: "+character.ch_attack+
+				"  <img src='/image/icons/Dodge.png' >Dodge: "+character.ch_dodge*100+"%</p>");
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+		});
+		
+		$.ajax({
+			type : "POST",
+			url : "./getMonster",
+			success : function(data) {
+				var monster = JSON.parse(data)[0];
+				console.log(monster);
+				$(".monsterCombat").append("<div class='monster fade-in'>"+
+				"<input type='hidden' name='name' value='"+monster.m_name+"'>"+
+				"<p class='name'>"+monster.m_name+"</p>"+
+				"<div class='hp-monster fade-in-Monster'>"+monster.m_hp_max+"</div>"+
+				"<img src='/image/avatar/"+monster.m_name+".png' class='avatar' alt="+monster.m_name+">"+
+				"<p><img src='/image/icons/HP.png' >HP: "+monster.m_hp_max+
+				"  <img src='/image/icons/Attack.png' > Attack: "+monster.m_attack+
+				"  <img src='/image/icons/Dodge.png' >Dodge: "+monster.m_dodge*100+"%</p>");
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+		});
+		
+	$("#fight").click(function(){
+			
+			$.ajax({
+				type : "POST",
+				url : "./takeDamage",
+				success : function(data) {
+					console.log(data);
+					var combat = JSON.parse(data);
+					console.log(combat);
+					combat.forEach(function(fight){
+					
+						$(".hp-hero").text(fight.ch_hp);
+						$(".hp-monster").text(fight.m_hp);
+
+						if(fight.m_hp <= 0){
+							$.ajax({
+								type : "POST",
+								url : "./getMonster",
+								success : function(data) {
+										//Actualisation dynamique notamment du monstre mais aussi avec unz div affichant sa vie actuelle
+										try{
+											var monster = JSON.parse(data)[0];
+											$(".monsterCombat").empty();
+											$(".monsterCombat").append("<div class='monster fade-in'>"+
+											"<p class='name'>"+monster.m_name+"</p>"+
+											"<div class='hp-monster fade-in-Monster'>"+monster.m_hp_max+"</div>"+
+											"<div class='avatar_monster'>"+
+											"<img src='/image/avatar/"+monster.m_name+".png' class='avatar' alt="+monster.m_name+">"+
+											"</div>"+
+											"<p><img src='/image/icons/HP.png' >HP: "+monster.m_hp_max+
+											"  <img src='/image/icons/Attack.png' > Attack: "+monster.m_attack+
+											"  <img src='/image/icons/Dodge.png' >Dodge: "+monster.m_dodge*100+"%</p></div>");
+										}catch(e){
+											document.location.href="fin.html"; 
+										}
+									
+									
+								},
+								
+							});
+						}
+						if(fight.ch_hp == 0){
+							document.location.href="gameOver.html"; 
+						}
+					});
+				},
+				
+			});
+		});
+	});
+	</script>
+</html>
