@@ -14,8 +14,8 @@ Voici quelques instructions afin de bien lancer le projet :
 
 Vous devez posséder :
 
-- Un navigateur (_exemple_ : Google Chrome)
-- Un IDE (_exemple_ : Eclipse)
+- Un navigateur (_exemple_ : [Google Chrome](https://www.google.fr))
+- Un IDE (_exemple_ : [Eclipse](https://www.eclipse.org))
 
 ### Installation
 
@@ -27,7 +27,7 @@ Exécutez dans votre IDE ``SpringLauncher.java``.
 
 Lancer votre navigateur et taper l'URL suivant :  http://localhost:8080/. Vous devrez arriver sur la page d'accueil du jeu. Pour commencer, cliquer sur le bouton **"Choix du personnage"**.
 
-![Page d'accueil](Projet_Zelda/target/classes/static/image/Page d'accueil.png)!
+![Page d'accueil](target/classes/static/image/Page d'accueil.png)!
 
 ## Fabriqué avec
 
