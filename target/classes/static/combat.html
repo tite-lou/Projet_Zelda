@@ -7,7 +7,13 @@
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 		
-		<script src="js/cookies.js"></script>
+		 <!-- Compiled and minified CSS 
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    	
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
+		
+		
 	</head>
 	<body>
 		<div class="characterCombat left center">
@@ -21,17 +27,21 @@
 	<!-- Le Js ici recupére les information sur le personnage selectionner et reactuliser sa vie tout comme celle du monstre qui 
 	permettra de savoir si l'on actualise le monstre en passant au suivant si le precedant de la liste à ces HP à 0 -->
 	<script type="text/javascript">
+	
 	$(document).ready(function() {	
+		var hp_h_base;
+		var hp_m_base;
 		$.ajax({
 			type : "POST",
 			url : "./getCharacter",
 			success : function(data) {
 				var character = JSON.parse(data)[0];
+				hp_h_base = character.ch_hp_max;
 				console.log(character);
 				$(".characterCombat").append("<div class='character fade-in'>"+
 				"<input type='hidden' name='name' value='"+character.h_name+"'>"+
 				"<p class='name'>"+character.h_name+"</p>"+
-				"<div class='hp-hero fade-in-Monster'>"+character.ch_hp_max+"</div>"+
+				"<div class='progress'> <div class='determinate' style='width: 100%'></div></div><div class='hp-hero fade-in-Monster'>"+character.ch_hp_max+"</div>"+
 				"<img src='/image/avatar/"+character.h_name+".png' class='avatar' alt="+character.h_name+">"+
 				"<p><img src='/image/icons/HP.png'>HP: "+character.ch_hp_max+
 				"  <img src='/image/icons/Attack.png' > Attack: "+character.ch_attack+
@@ -47,11 +57,12 @@
 			url : "./getMonster",
 			success : function(data) {
 				var monster = JSON.parse(data)[0];
+				hp_m_base = monster.m_hp_max;
 				console.log(monster);
 				$(".monsterCombat").append("<div class='monster fade-in'>"+
 				"<input type='hidden' name='name' value='"+monster.m_name+"'>"+
 				"<p class='name'>"+monster.m_name+"</p>"+
-				"<div class='hp-monster fade-in-Monster'>"+monster.m_hp_max+"</div>"+
+				"<div class='progress'> <div id='viemonstre' class='determinate' style='width: 100%'></div></div><div class='hp-monster fade-in-Monster'>"+monster.m_hp_max+"</div>"+
 				"<img src='/image/avatar/"+monster.m_name+".png' class='avatar' alt="+monster.m_name+">"+
 				"<p><img src='/image/icons/HP.png' >HP: "+monster.m_hp_max+
 				"  <img src='/image/icons/Attack.png' > Attack: "+monster.m_attack+
@@ -74,7 +85,17 @@
 					combat.forEach(function(fight){
 					
 						$(".hp-hero").text(fight.ch_hp);
+						var value = (fight.ch_hp/hp_h_base)*100;
+						console.log(value);
+						console.log(hp_h_base);
+						console.log(fight.ch_hp);
+						$(".determinate").css("width", value+"%");
 						$(".hp-monster").text(fight.m_hp);
+						var value2 = (fight.m_hp/hp_m_base)*100;
+						console.log(value2);
+						console.log(hp_m_base);
+						console.log(fight.m_hp);
+						$("#viemonstre").css("width", value2+"%");
 
 						if(fight.m_hp <= 0){
 							$.ajax({
@@ -84,10 +105,11 @@
 										//Actualisation dynamique notamment du monstre mais aussi avec unz div affichant sa vie actuelle
 										try{
 											var monster = JSON.parse(data)[0];
+											hp_m_base = monster.m_hp_max;
 											$(".monsterCombat").empty();
 											$(".monsterCombat").append("<div class='monster fade-in'>"+
 											"<p class='name'>"+monster.m_name+"</p>"+
-											"<div class='hp-monster fade-in-Monster'>"+monster.m_hp_max+"</div>"+
+											"<div class='progress'> <div id='viemonstre' class='determinate' style='width: 100%'></div></div><div class='hp-monster fade-in-Monster'>"+monster.m_hp_max+"</div>"+
 											"<div class='avatar_monster'>"+
 											"<img src='/image/avatar/"+monster.m_name+".png' class='avatar' alt="+monster.m_name+">"+
 											"</div>"+

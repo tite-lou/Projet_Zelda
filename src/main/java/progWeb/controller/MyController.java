@@ -347,6 +347,7 @@ public class MyController {
 		 
 		 stat.put("ch_hp", Integer.toString(ch_hp));
 		 stat.put("m_hp", Integer.toString(m_hp));
+		 //stat.put("ch_hp_mx", Integer.toString());
 		 newStat.put(stat);
 	
 		 return newStat.toString();
