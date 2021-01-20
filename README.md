@@ -27,15 +27,12 @@ Exécutez dans votre IDE ``SpringLauncher.java``.
 
 Lancer votre navigateur et taper l'URL suivant :  http://localhost:8080/. Vous devrez arriver sur la page d'accueil du jeu. Pour commencer, cliquer sur le bouton **"Choix du personnage"**.
 
-![Page d'accueil](../target/classes/static/image/Page d'accueil.png)
-
 ## Fabriqué avec
 
 * [Eclipse](https://www.eclipse.org) - Environnement de développement
 * [Postman](https://www.postman.com) - Environnement de développement d'API
 * [Materialize.css](http://materializecss.com) - Framework CSS (front-end) : par problème de conflit que nous n'avons pas su régler, nous avons intégré à notre CSS uniquement les parties qui nous intéressaient
 * JSON (JavaScript Object Notation) - Format d'échange de données en texte lisible
-
 
 ## Versions
 
