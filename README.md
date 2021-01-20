@@ -8,7 +8,7 @@ Ce projet vous plongera dans le **Royaume d'Eldin** où vous pourrez choisir un 
 
 ## Pour commencer
 
-Voici quelques instructions afin de bien lacer le projet : 
+Voici quelques instructions afin de bien lancer le projet : 
 
 ### Pré-requis
 
