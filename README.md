@@ -19,7 +19,7 @@ Vous devez posséder :
 
 ### Installation
 
-Assurez-vous de mettre le projet Maven ``Mini-projet`` dans votre espace de travail avant de l'importer dans votre IDE. 
+Assurez-vous de mettre le projet Maven ``Projet_Zelda`` dans votre espace de travail avant de l'importer dans votre IDE. 
 
 ## Démarrage
 
